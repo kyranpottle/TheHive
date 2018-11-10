@@ -3,7 +3,6 @@ import uuid
 from flask import request, jsonify, make_response
 
 from app import app, mongo
-from app.api import logged_in_sessions
 
 def user_is_logged_in(session_id):
     return session_id in logged_in_sessions
