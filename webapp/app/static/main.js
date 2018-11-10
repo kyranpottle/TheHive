@@ -1,9 +1,9 @@
 'use strict';
 
-document.body.addEventListener('DOMContentLoaded', init);
+window.addEventListener('DOMContentLoaded', init);
 
 function init() {
-
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
 }
 
 function getLoginFormInfo() {
@@ -28,4 +28,6 @@ function handleLogin() {
             alert(error.responseText);
         }
     });
+
+    return false;
 }

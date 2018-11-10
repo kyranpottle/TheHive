@@ -31,4 +31,10 @@ def signupPage():
 
 @app.route('/editor')
 def editorPage():
+    user = request.cookies.get('username')
     return render_template('editor.html', user=user)
+
+@app.route('/profile')
+def profilePage():
+    user = request.cookies.get('username')
+    return render_template('profile.html', user=user)
