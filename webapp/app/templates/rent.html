@@ -1,5 +1,11 @@
 {% extends 'common/layout.html' %}
 {% set active_page = "rent" %}
+{% set tiers = [
+    ('Best', '$0.1'),
+    ('Good', '$0.05'),
+    ('Average', '$0.01'),
+    ('Meh', '$0.001')
+] -%}
 {% block page_content %}
     <h5 class="card-title">Find a host</h5>
     <p class="card-text">Choose the preferred tier for your project.</p>
@@ -14,38 +20,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">#1</th>
-                <td>Best</td>
-                <td>$0.1</td>
-                <td>
-                    <button class="btn btn-primary">Rent it!</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">#2</th>
-                <td>Good</td>
-                <td>$0.05</td>
-                <td>
-                    <button class="btn btn-primary">Rent it!</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">#3</th>
-                <td>Average</td>
-                <td>$0.01</td>
-                <td>
-                    <button class="btn btn-primary">Rent it!</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">#4</th>
-                <td>Meh</td>
-                <td>$0.001</td>
-                <td>
-                    <button class="btn btn-primary">Rent it!</button>
-                </td>
-            </tr>
+            {% for performance, price in tiers %}
+                <tr>
+                    <th scope="row">#{{loop.index}}</th>
+                    <td>{{ performance|e }}</td>
+                    <td>{{ price|e }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="editor?tier={{loop.index}}">Rent it!</a>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}
