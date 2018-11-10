@@ -11,6 +11,7 @@ eventlet.monkey_patch()
 app = Flask(__name__)
 app.config.from_pyfile('settings.cfg')
 
+
 socketio = SocketIO(app, async_mode="eventlet", async_handlers=True)
 mongo = PyMongo(app)
 
