@@ -7,7 +7,6 @@ from flask_socketio import join_room, leave_room, emit, disconnect
 from app import socketio
 # from app import mongo
 
-
 @socketio.on('connect')
 def on_connect():
     return
