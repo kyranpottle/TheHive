@@ -1,6 +1,6 @@
 import uuid
 
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 
 from app import app, mongo
 from app.api import logged_in_sessions
@@ -26,7 +26,7 @@ def signup_user():
 
 @app.route('/api/user/login', methods=['POST'])
 def login_user():
-    body = request.get_json()
+    body = request.get_json(force=True)
     try:
         user = {
             'email': body['email'],
@@ -34,9 +34,10 @@ def login_user():
         }
         found_user = mongo.db.users.find_one(user)
         if found_user != None:
-            if not user_is_logged_in(request.sid):
-                logged_in_sessions[request.sid] = user.email
-                return "Success", 200
+            if not request.cookies.get('username'):
+                resp = make_response("Success", 200)
+                resp.set_cookie('username', user['email'])
+                return resp
             else:
                 return "User already logged in!"
         else:
