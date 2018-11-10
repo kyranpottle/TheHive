@@ -3,4 +3,54 @@
 {% block page_content %}
     <h5 class="card-title">Find a host</h5>
     <p class="card-text">Find servers to host your project.</p>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Benchmark Time</th>
+                <th scope="col">Price (per minute)</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Steve's server</th>
+                <td>CA, USA</td>
+                <td>13 s</td>
+                <td>$0.02</td>
+                <td>
+                    <button class="btn btn-primary">Rent it!</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">TheFastest999</th>
+                <td>Bucharest, Romania</td>
+                <td>25 s</td>
+                <td>$0.005</td>
+                <td>
+                    <button class="btn btn-primary">Rent it!</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">PetaFlops</th>
+                <td>Bejing, China</td>
+                <td>20 s</td>
+                <td>$0.01</td>
+                <td>
+                    <button class="btn btn-primary">Rent it!</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">TheLegend27</th>
+                <td>Moscow, Russian Federation</td>
+                <td>50 s</td>
+                <td>$0.001</td>
+                <td>
+                    <button class="btn btn-primary">Rent it!</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 {% endblock %}
