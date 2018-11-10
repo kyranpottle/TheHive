@@ -23,3 +23,7 @@ def loginPage():
 @app.route('/signup')
 def signupPage():
     return render_template('signup.html')
+
+@app.route('/editor')
+def editorPage():
+    return render_template('editor.html')
