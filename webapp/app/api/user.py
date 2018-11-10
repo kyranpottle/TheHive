@@ -1,12 +1,14 @@
 import uuid
 
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 
 from app import app, mongo
-from app.api import valid_tokens
 
-def create_user_token():
-    return uuid.uuid4().hex
+def user_is_logged_in(session_id):
+    return session_id in logged_in_sessions
+
+def get_user_from_session(session_id):
+    return logged_in_sessions.get(session_id)
     
 @app.route('/api/user/signup', methods=['POST'])
 def signup_user():
@@ -23,7 +25,7 @@ def signup_user():
 
 @app.route('/api/user/login', methods=['POST'])
 def login_user():
-    body = request.get_json()
+    body = request.get_json(force=True)
     try:
         user = {
             'email': body['email'],
@@ -31,7 +33,12 @@ def login_user():
         }
         found_user = mongo.db.users.find_one(user)
         if found_user != None:
-            return create_user_token()
+            if not request.cookies.get('username'):
+                resp = make_response("Success", 200)
+                resp.set_cookie('username', user['email'])
+                return resp
+            else:
+                return "User already logged in!"
         else:
             return "No User Found", 400
     except KeyError:
