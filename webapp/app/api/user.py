@@ -18,8 +18,17 @@ def signup_user():
             'email': body['email'],
             'password': body['password']
         }
+        if len(body['email']) == 0:
+            return "Email field cannot be blank!!", 400
+        if len(body['password']) < 6:
+            return "Password must be longer than 6 characters!", 400
+        found_user = mongo.db.users.find_one({"user": user['email']})
+        if (found_user):
+            return "User email already exists!", 400
         mongo.db.users.insert_one(user)
-        return 'Success'
+        resp = make_response("Success", 200)
+        resp.set_cookie('username', user['email'])
+        return resp
     except KeyError:
         return "Invalid JSON body!", 400
 

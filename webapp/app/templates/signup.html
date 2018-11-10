@@ -3,4 +3,19 @@
 {% block page_content %}
     <h5 class="card-title">Sign Up</h5>
     <p class="card-text">Get an account to use our awesome services!</p>
+    <form>
+        <div class="form-group">
+            <label for="signup-email-form">Email address</label>
+            <input type="email" class="form-control" id="signup-email-form" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="signup-password-form">Password</label>
+            <input type="password" class="form-control" id="signup-password-form" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="signup-confirm-password-form">Confirm Password</label>
+            <input type="password" class="form-control" id="signup-confirm-password-form" placeholder="Confirm Password">
+        </div>
+        <button id="submit-signup-form-button" class="btn btn-primary" onsubmit="handleSignUp()">Submit</button>
+    </form>
 {% endblock %}
