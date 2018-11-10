@@ -1,0 +1,29 @@
+{% set navigation_bar = [
+    ('/', 'index', 'ABOUT'),
+    ('/rent', 'rent', 'FIND A HOST'),
+    ('/host', 'host', 'BE A HOST')
+] -%}
+{% set active_page = active_page -%}
+
+<ul class="nav nav-pills card-header-pills">
+    {% for href, id, caption in navigation_bar %}
+        <li class="nav-item">
+            <a class="nav-link {% if id == active_page %} active {% endif %}" href="{{ href|e }}">
+                {{ caption|e }}
+            </a>
+        </li>
+    {% endfor %}
+
+    <div class="navigation-right">
+        <li class="nav-item">
+            <a class="nav-link {% if active_page == "login" %} active {% endif %}" href="/login">
+                LOG IN
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_page == "signup" %} active {% endif %}" href="/signup">
+                SIGN UP
+            </a>
+        </li>
+    <div>
+</ul>

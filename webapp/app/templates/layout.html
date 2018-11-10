@@ -1,0 +1,63 @@
+{% set navigation_bar = [
+    ('/', 'index', 'Index'),
+    ('/downloads/', 'downloads', 'Downloads'),
+    ('/about/', 'about', 'About')
+] -%}
+{% set active_page = active_page|default('index') -%}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Hive Dashboard</title>
+    <meta name="description" content="The Hive">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Third Party -->
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
+    <!-- Bootstrap -->
+    <link
+        rel="stylesheet"
+        href="{{url_for('static', filename='bootstrap.min.css')}}"
+    >
+    <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous"
+    >
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"
+    ></script>
+    
+    <!-- Custom -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+</head>
+
+<body>
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                {% include 'navigation.html' %}
+            </div>
+
+            <div class="card-body">
+                {% block page_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

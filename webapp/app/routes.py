@@ -5,6 +5,21 @@ from app import app
 from app import socket
 
 @app.route('/')
-@app.route('/index')
-def index():
+def indexPage():
     return render_template('index.html')
+
+@app.route('/rent')
+def rentPage():
+    return render_template('rent.html')
+
+@app.route('/host')
+def hostPage():
+    return render_template('host.html')
+
+@app.route('/login')
+def loginPage():
+    return render_template('login.html')
+
+@app.route('/signup')
+def signupPage():
+    return render_template('signup.html')
