@@ -1,3 +1,3 @@
-valid_tokens = []
+logged_in_sessions = {}
 
 from app.api import user
