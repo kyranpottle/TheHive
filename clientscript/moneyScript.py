@@ -35,7 +35,7 @@ else:
     multiplyer = 0.0005
 
 
-p = 0
+p = 0 # £££
 
 while True:
     interval = 60
