@@ -16,13 +16,11 @@ TheHive Client Host Script
 
 
 import urllib.request
-#import socket
-#import os
 import sys
 import time
 import subprocess
 
-
+#splash screen
 logo = "  ________         __  ___          \n /_  __/ /_  ___  / / / (_)   _____ \n  / / / __ \/ _ \/ /_/ / / | / / _ \ \n / / / / / /  __/ __  / /| |/ /  __/\n/_/ /_/ /_/\___/_/ /_/_/ |___/\___/ \n             monetize your PC       \n" #you what? XD
 print(logo)
 time.sleep(0.5)
@@ -31,6 +29,7 @@ time.sleep(0.5)
 '''-------------------------
     INSTALL/UPDATE PACKAGES
    -------------------------'''
+
 
 print("[PIP INSTALL FLASK]")
 subprocess.call(["pip", "install", "flask"])
@@ -46,11 +45,13 @@ subprocess.call(["pip", "install", "eventlet"])
 '''-----------
     BENCHMARK
    -----------'''
+
+subprocess.call(["clear"])
    
 tier = 0
 pi = 3.141592
 
-start = time.time() / 60 #divide by 60 because there's 60 seconds in a minute
+start = time.time() / 60 #divide by 60 to convert to seconds
 print("\n[BENCHMARKING]")
 
 
@@ -88,13 +89,13 @@ time.sleep(0.5)
    -------------'''
 
 if duration <= 1.5:
-    tier = 1 #£0.05/m
+    tier = 1 #£0.05/min
 elif duration <= 2:
-    tier = 2 #£0.025/m
+    tier = 2 #£0.025/min
 elif duration <= 2.5:
-    tier = 3 #£0.005/m
+    tier = 3 #£0.005/min
 else:
-    tier = 4 #£0.0005/m
+    tier = 4 #£0.0005/min
 
 
 subprocess.call(["clear"])
@@ -150,7 +151,7 @@ while loop:
 ### TODO: SECURITY ISSUES ###
 #############################
 
-# Possible stack overflow / divide by zero exploit if the user changes the system time
+# Possible stack overflow / divide by zero exploit if the user changes the system time whilst running the script
 
 # Changing system time during benchmarking could result in a higher tier being achieved
     
