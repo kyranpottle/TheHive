@@ -1,0 +1,64 @@
+{% extends 'common/layout.html' %}
+{% set active_page = "profile" %}
+{% set user_data = [
+    ('Username', 'test'),
+    ('Email', 'test@email.com'),
+    ('Total credit', '$126.59'),
+    ('Total hosted hours', '16h'),
+    ('Hosting in progress', 'True'),
+    ('Number of hosted projects', '5'),
+    ('Total rented hours', '2h'),
+    ('Number of rented projects', '1'),
+    ('Renting in progress', 'True')
+] -%}
+{% block page_content %}
+    <h5 class="card-title">Profile</h5>
+    <br />
+    <form id="profileForm">
+        {% for key, value in user_data %}
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm col-form-label">{{ key|e }}</label>
+                <div class="col-sm">
+                    <input
+                        type="text"
+                        readonly
+                        class="form-control-plaintext"
+                        value="{{ value|e }}"
+                    >
+                </div>
+            </div>
+
+            {% if key == 'Hosting in progress' %}
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm col-form-label">Current hosting progress</label>
+                    <div class="progress">
+                        <div
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            role="progressbar"
+                            style="width: 80%;"
+                            aria-valuenow="80"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                        >80%</div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if key == 'Renting in progress' %}
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm col-form-label">Current renting progress</label>
+                    <div class="progress">
+                        <div
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            role="progressbar"
+                            style="width: 36%;"
+                            aria-valuenow="36"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                        >36%</div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </form>
+{% endblock %}
