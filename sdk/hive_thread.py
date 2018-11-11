@@ -1,19 +1,10 @@
+""" This is the Threading for hive """
+
 import inspect
 from textwrap import dedent
 import sys
-from io import StringIO
-import contextlib
 import subprocess
 from tempfile import NamedTemporaryFile
-
-@contextlib.contextmanager
-def stdoutIO(stdout=None):
-    old = sys.stdout
-    if stdout is None:
-        stdout = StringIO()
-    sys.stdout = stdout
-    yield stdout
-    sys.stdout = old
 
 class HiveThread(object):
     """ This object exposes the threading API for TheHive """
@@ -23,6 +14,10 @@ class HiveThread(object):
 
     def join(self):
         """ This is the function to call to join threads """
+        pass
+
+    def result(self):
+        """ This function can be used to get the value returned by the thread """
         pass
 
     def run(self, farg, **kwargs):
@@ -37,10 +32,10 @@ print(main(farg, **kwargs))
 """.format(farg, kwargs)
 
         #print(lines)
-        with NamedTemporaryFile(mode='w') as file:
-            file.write(lines)
-            file.flush()
-            result = subprocess.check_output([sys.executable, file.name]).decode(sys.stdout.encoding)
+        with NamedTemporaryFile(mode='w') as script_file:
+            script_file.write(lines)
+            script_file.flush()
+            result = subprocess.check_output([sys.executable, script_file.name]).decode(sys.stdout.encoding)
             print("out: ", result)
 
     def main(farg, **kwargs):
