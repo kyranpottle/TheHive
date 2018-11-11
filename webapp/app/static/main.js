@@ -1,9 +1,13 @@
 'use strict';
 
-window.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+
+    const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) logoutButton.addEventListener('click', handleLogout);
 }
 
 function getLoginFormInfo() {
@@ -30,4 +34,9 @@ function handleLogin() {
     });
 
     return false;
+}
+
+function handleLogout() {
+    document.cookie = 'username=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    window.location.href = "/";
 }
