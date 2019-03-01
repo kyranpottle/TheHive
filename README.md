@@ -8,8 +8,5 @@ The idea behind this is that a machine can be added to the network and run these
 ### Dependencies  
 ```
 flask
-flask-socketio
-flask-pymongo
-flask
 eventlet
 ```
