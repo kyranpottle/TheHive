@@ -9,7 +9,7 @@ Created on Sun Nov 11 05:27:04 2018
 /_/ /_/ /_/\___/_/ /_/_/ |___/\___/ 
              monetize your PC 
 
-@author: kyr_n
+@author: Kyran Pottle
 
 
 
