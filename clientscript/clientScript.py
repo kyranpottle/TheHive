@@ -11,7 +11,7 @@ TheHive Client Host Script
 /_/ /_/ /_/\___/_/ /_/_/ |___/\___/ 
              monetize your PC 
 
-@author: kyr_n
+@author: Kyran Pottle
 """
 
 
@@ -56,8 +56,7 @@ print("\n[BENCHMARKING]")
 
 
 '''
-The benchmarking here basically works by running an insane amount complexed
-maths problems and timing how long it takes the processor to complete them
+The benchmarking here works by timing how long the CPU takes to complete a large amount of mathematically complex tasks
 '''
 
 for i in range(1,1000):
@@ -113,7 +112,6 @@ ip = ""
 src = urllib.request.urlopen("https://api.ipify.org/?format=json")
 json = src.read().decode()
 
-
 #extract ip
 for letter in json:
     if letter.isdigit() or letter == ".":
@@ -122,8 +120,6 @@ for letter in json:
 print("IP: " + ip +"\n")
 print("Awaiting Connection...")
 
-
-#100% didn't steal this part off stackoverflow...
 def spinning_cursor():
     while True:
         for cursor in '|/-\\':
@@ -153,54 +149,4 @@ while loop:
 # Possible stack overflow / divide by zero exploit if the user changes the system time
 
 # Changing system time during benchmarking could result in a higher tier being achieved
-    
-# TODO: Implement a way of getting time from an external source? Could effect results based on internet/network speeds...
 
-
-
-
-
-
-
-
-
-
-
-
-'''--------
-    SOCKET
-   --------''
-
-ip = ""
-port = 22
-max_connections = 10
-
-#get ip in JSON
-src = urllib.request.urlopen("https://api.ipify.org/?format=json")
-json = src.read().decode()
-
-#extract ip
-for letter in json:
-    if letter.isdigit() or letter == ".":
-        ip += str(letter)
-
-
-#set up FTPS socket
-def FTPS():
-    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    serversocket.bind((socket.gethostname(), port))
-    serversocket.listen(max_connections)
-        
-    ''
-        Get system OS and gain root access if Mac
-    ''
-    if (os.name == "posix"):
-        if os.access('/root', os.R_OK|os.X_OK):
-            os.chdir('/root')
-            FTPS()
-    else:
-        FTPS()        
-
-print("FTPS SOCKET SET UP\nHOST IP "+ip+"\nPORT "+str(port)+"\nMAX " + str(max_connections) + " CONNECTIONS\n\nReturn to start")
-
-'''
